@@ -5,6 +5,7 @@ export interface ISong extends Document {
   projectId: Types.ObjectId;
   author: string;
   key?: string;
+  canPortfolio: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -29,6 +30,10 @@ const songSchema = new Schema<ISong>(
     key: {
       type: String,
       trim: true,
+    },
+    canPortfolio: {
+      type: Boolean,
+      default: false,
     },
   },
   {

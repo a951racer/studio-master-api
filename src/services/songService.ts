@@ -31,6 +31,7 @@ export async function createSong(data: {
   projectId: string;
   author: string;
   key?: string;
+  canPortfolio?: boolean;
 }): Promise<ISong> {
   // Validate projectId exists
   const project = await Project.findById(data.projectId);
@@ -43,6 +44,7 @@ export async function createSong(data: {
     projectId: new Types.ObjectId(data.projectId),
     author: data.author,
     key: data.key,
+    canPortfolio: data.canPortfolio ?? false,
   });
 }
 
@@ -55,6 +57,7 @@ export async function updateSong(
     title?: string;
     author?: string;
     key?: string;
+    canPortfolio?: boolean;
   },
 ): Promise<ISong> {
   const song = await Song.findByIdAndUpdate(id, data, {
